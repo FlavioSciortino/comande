@@ -6,15 +6,16 @@ using namespace std;
 class comande {
 	string cognome, pizza;
 	int qta;
-	double prezzo;
+	double prezzo, totale;
 public:
-	comande() {}
-	comande(string cognome, string pizza, int qta, double prezzo) : cognome(cognome), pizza(pizza), qta(qta), prezzo(prezzo) {}
+	
+	comande(string cognome, string pizza, int qta, double prezzo) : cognome(cognome), pizza(pizza), qta(qta), prezzo(prezzo), totale(totale) {}
 	friend ostream &operator<<(ostream &os, comande & c) {
 		os << "cognome = " << c.cognome << endl;
 		os << "pizza = " << c.pizza << endl;
 		os << "quantità = " << c.qta << endl;
 		os << "prezzo = " << c.prezzo << endl;
+		os << "totale = " << c.prezzo * c.qta << endl;
 		return os;
 	}
 
@@ -32,6 +33,8 @@ public:
 	string getPizza() {return this->pizza; }
 	int getQta() {return this->qta; }
 	double getPrezzo() {return this->prezzo; } 
+	//bool operator !=(comande &c) { return this->p
+	double getTotale(){return this->prezzo * this->qta; }
 };
 #endif
 	

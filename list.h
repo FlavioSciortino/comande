@@ -74,23 +74,54 @@ public:
 		return;
 	}
 
-	void removeElement(T val) {
+	void removeElement(double val) {
+
 		if(isEmpty())
 			return;
+
 		nodo<T> * cur = head;
 		nodo<T> * prev = nullptr;
-		while(cur->next && cur->val != val) {
+
+		if(head->val.getTotale() == val)
+		{
+			removeHead();
+			return;
+		}
+
+		while(cur->next && cur->val.getTotale() != val) {
+
 			prev = cur;
 			cur = cur->next;
 		}
+
+		if(cur->val.getTotale() != val)
+			return;
+
 		prev->next = cur->next;
+		delete cur;
 		return;
 	}
+	void removeBelow(double p){
+
+		if(isEmpty())
+			return;	
+
+		nodo<T> * cur = head;
+
+		while(cur) {
+
+			if(cur->val.getTotale()<= p) 
+				removeElement(cur->val.getTotale());
+			
+			cur = cur->next;
+		}
+	}
+
 
 	list create(list &l) {
 		ifstream fin("comande.txt");
 		while(fin.good()) {
-			comande c;
+			comande c("", "",0,0);
 			fin>>c;
 			l.insertHead(c);
 
@@ -124,6 +155,30 @@ public:
 		}
 	}
 
+	void elimina() {
+		if(isEmpty())
+			return;
+		int count = 0;
+		double somma = 0;
+		nodo<T> * ptr = head;
+		while(ptr) {
+			somma += ptr->val.getPrezzo() * ptr->val.getQta();
+			count++;
+			ptr = ptr->next;
+
+		}
+		double media = somma/count ;
+		cout << "media = " << media << endl;
+		nodo<T> * cur = head;
+		while(cur) {
+			if( cur->val.getTotale()<= media) 
+				removeBelow(media);
+				
+			cur = cur->next;
+		}
+	}
+			
+		
 	friend ostream &operator<<(ostream &os, list<T> & l) {
 		if(l.isEmpty())
 			return os << "empty " << endl;
