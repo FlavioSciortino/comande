@@ -1,3 +1,4 @@
+#include "comande.h"
 #ifndef LIST_H
 #define LIST_H
 template<typename T>
@@ -8,6 +9,7 @@ class nodo {
 	friend class list;
 public:
 	nodo(T val) : val(val) {next = nullptr; }
+	nodo<T> * getNext() {return this->next; }
 	friend ostream &operator<<(ostream &os, nodo<T> & n) {
 		return os << n.val << endl;
 	}
@@ -42,6 +44,7 @@ public:
 		while(ptr) {
 			ptr = ptr->next;
 		}
+		nodo<T> * toInsert = new nodo<T>(val);
 		ptr->next = toInsert;
 		return;
 	}
@@ -80,6 +83,28 @@ public:
 		}
 		prev->next = cur->next;
 		return;
+	}
+
+	list create(list &l) {
+		ifstream fin("comande.txt");
+		while(fin.good()) {
+			comande c;
+			fin>>c;
+			l.insertHead(c);
+
+		}
+		return l;
+	}
+
+	friend ostream &operator<<(ostream &os, list<T> & l) {
+		if(l.isEmpty())
+			return os << "empty " << endl;
+		nodo<T> * ptr = l.head;
+		while(ptr) {
+			os << *ptr << endl;
+			ptr = ptr->getNext();
+		}
+		return os;
 	}
 };
 #endif

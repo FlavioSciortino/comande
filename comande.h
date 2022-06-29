@@ -1,3 +1,6 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
 #ifndef COMANDE_H
 #define COMANDE_H
 class comande {
@@ -5,6 +8,7 @@ class comande {
 	int qta;
 	double prezzo;
 public:
+	comande() {}
 	comande(string cognome, string pizza, int qta, double prezzo) : cognome(cognome), pizza(pizza), qta(qta), prezzo(prezzo) {}
 	friend ostream &operator<<(ostream &os, comande & c) {
 		os << "cognome = " << c.cognome << endl;
@@ -16,8 +20,8 @@ public:
 
 	friend istream &operator>>(istream &is, comande & c) {
 		string qta_str, prezzo_str;
-		std::getline(is, g.cognome, ';');
-		std::getline(is, g.pizza, ';');
+		std::getline(is, c.cognome, ';');
+		std::getline(is, c.pizza, ';');
 		std::getline(is, qta_str, ';');
 		std::getline(is, prezzo_str, '\n');
 		c.qta = std::atoi(qta_str.c_str());
