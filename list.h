@@ -107,7 +107,22 @@ public:
 
 	}
 
-	
+	void cerca(string cognome) {
+		
+		if(isEmpty())
+			return;
+		nodo<T> * ptr = head;
+		while(ptr) {
+			if(cognome == ptr->val.getCognome()) {
+				cout << ptr->val << endl;
+				cout << "il totale è : " << ptr->val.getPrezzo() * ptr->val.getQta() << "£" << endl;
+			}
+			//totale = ptr->val.getPrezzo() * ptr->val.getQta() << endl;
+			
+			ptr = ptr->next;
+
+		}
+	}
 
 	friend ostream &operator<<(ostream &os, list<T> & l) {
 		if(l.isEmpty())
