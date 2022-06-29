@@ -1,5 +1,5 @@
-Spoto; Margherita; 3; 5
+Spoto; Margherita; 3 ; 5
 Sciortino; Capricciosa; 2; 10
-Marino; Tedesca; 4,7
-Todaro; Margherita; 2;5
-Ruggieri; Bufala; ; 4; 12
+Marino; Tedesca; 4; 7
+Todaro; Margherita; 2 ;5
+Ruggieri; Bufala; 4; 12

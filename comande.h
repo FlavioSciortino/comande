@@ -28,6 +28,10 @@ public:
 		c.prezzo = std::atof(prezzo_str.c_str());
 		return is;
 	}
+	string getCognome() {return this->cognome; }
+	string getPizza() {return this->pizza; }
+	int getQta() {return this->qta; }
+	double getPrezzo() {return this->prezzo; } 
 };
 #endif
 	

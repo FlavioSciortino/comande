@@ -28,8 +28,10 @@ public:
 	}
 
 	void insertHead(T val) {
-		if(isEmpty())
+		if(isEmpty()) {
 			insert(val);
+		return;
+	}
 		nodo<T> * toInsert = new nodo<T> (val);
 		toInsert->next = head;
 		head = toInsert;
@@ -95,6 +97,17 @@ public:
 		}
 		return l;
 	}
+
+	void raggruppa() {
+		nodo<T> * ptr = head;
+		while(ptr->next) {
+			cout << "il cliente : " <<ptr->val.getCognome() << " " << "ha ordinato : " << ptr->val.getQta() << "pizze" << " " << "costo di : " << ptr->val.getPrezzo() << endl;
+			ptr = ptr->getNext();
+		}
+
+	}
+
+	
 
 	friend ostream &operator<<(ostream &os, list<T> & l) {
 		if(l.isEmpty())
